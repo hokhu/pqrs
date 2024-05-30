@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>PQRS System</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Bienvenido al Sistema PQRS de la Universidad Santo Tomás</h1>
+    <% if (nombre) { %>
+        <p>Hola, <%= nombre %>!</p>
+    <% } %>
+    <div class="grid">
+        <% if (nombre) { %>
+            <a href="/submit">Enviar una PQRSSI</a>
+            <a href="/view">Ver PQRSSI</a>
+            <a href="/logout">Cerrar Sesión</a>
+        <% } else { %>
+            <a href="/login">Iniciar Sesión</a>
+            <a href="/register">Registrarse</a>
+        <% } %>
+    </div>
+  </div>
+  <script type="text/javascript">
+    (function(d, t) {
+      var v = d.createElement(t), s = d.getElementsByTagName(t)[0];
+      v.onload = function() {
+        window.voiceflow.chat.load({
+          verify: { projectID: '665173b140bb36b244ded1c6' },
+          url: 'https://general-runtime.voiceflow.com/',
+          versionID: 'production'
+        });
+      }
+      v.src = "https://cdn.voiceflow.com/widget/bundle.mjs"; v.type = "text/javascript"; s.parentNode.insertBefore(v, s);
+    })(document, 'script');
+  </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    contraseña VARCHAR(255) NOT NULL,
+    is_admin BOOLEAN DEFAULT FALSE
+);
+
+CREATE TABLE categorias (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE estados (
+    id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE pqrssi (
+    id SERIAL PRIMARY KEY,
+    tipo VARCHAR(255) NOT NULL,
+    descripcion TEXT NOT NULL,
+    estado_id INT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    usuario_id INT,
+    categoria_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (categoria_id) REFERENCES categorias(id),
+    FOREIGN KEY (estado_id) REFERENCES estados(id)
+);
+
+CREATE TABLE historial (
+    id SERIAL PRIMARY KEY,
+    pqrssi_id INT,
+    estado_id INT,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    comentario TEXT,
+    FOREIGN KEY (pqrssi_id) REFERENCES pqrssi(id),
+    FOREIGN KEY (estado_id) REFERENCES estados(id)
+);
